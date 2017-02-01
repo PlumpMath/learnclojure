@@ -1,7 +1,8 @@
 (ns learnclojure.core
   (:gen-class)
   (:import (clojure.java.api Clojure))
-  (:require [clojure.string :as str])) 
+  (:require [clojure.string :as str]
+            [inflections.core :as inf])) 
 
 
                                         ;Clojure Cookbook
@@ -141,6 +142,28 @@
 
 (linkify-comment "next/big-thing" "As soon as we fix #42 and #1337 we should be set to release!")
 
+;; Split String into a number of parts
+(str/split "HEADER1, HEADER2, HEADER3" #",")
+(str/split "Spaces Newlines\n\n" #"\s+")
+(str/split "field1     field2 field3   " #"\s+")
+(str/split "field1     field2    field3    " #"\s+" -1)
+
+(def data-delimiters #"[ :-]")
+(str/split "2013-04-05 14:39" data-delimiters )
+(str/split "2013-04-05 14:39" data-delimiters 1)
+(str/split "2013-04-05 14:39" data-delimiters 2)
+(str/split "2013-04-05 14:39" data-delimiters 100)
+
+;; Try inflections
+(inf/pluralize 1 "monkey")
+(inf/pluralize 12 "monkey")
+(inf/pluralize 1 "box" "boxen")
+(inf/pluralize 3 "box" "boxen")
+
+;; Convert from "snake_case" to "CamelCase"
+(inf/camel-case "my_object")
+(inf/parameterize "My most favorite URL!")
+(inf/ordinalize 42)
 
 
 
