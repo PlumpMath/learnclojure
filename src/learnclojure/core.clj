@@ -165,7 +165,42 @@
 (inf/parameterize "My most favorite URL!")
 (inf/ordinalize 42)
 
+;; Convert from a string to symbol
+(symbol "valid?")
 
+;; Convert from a symbol to a string
+(str 'valid?)
+
+;; Convert a keyword into a name
+(name :triumph)
+
+;; Including the leading colon:
+(str :triumph)
+
+;; Convert from a symbol or string to a keyword
+(keyword "fantastic")
+(keyword 'fantastic)
+
+;; Get the name part of a keyword
+(name :user/valid?)
+
+;; if you only want the namespace
+(namespace :user/valid?)
+
+;; Get both
+(str :user/valid?)
+(.substring (str :user/valid?) 1)
+
+;; Convert namespaced symbols to keywords
+(keyword 'produce/onions)
+
+;; And vice versa
+(symbol (.substring (str :produce/onions) 1))
+
+;; Both keyword and symbol functions have two-argument versions that allow you to pass in the namespace and name separately.
+(def shopping-area "bakery")
+(keyword shopping-area "bagels")
+(symbol shopping-area "cakes")
 
 
 
